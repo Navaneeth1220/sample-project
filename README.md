@@ -1,4 +1,0 @@
-# sample-project
-sample
-hello
-
