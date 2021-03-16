@@ -1,6 +1,6 @@
 package com.cg.apps.hotelbooking.hotelms.service;
 
-import java.util.Optional;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,11 +27,12 @@ public class HotelServiceImpl implements IHotelService {
 	}
 
 	@Override
-	public Hotel addHotel(String hotelName, String address) {
+	public Hotel addHotel(String hotelName, String address, List rooms) {
 
 		Hotel hotel = new Hotel();
 		hotel.setHotelName(hotelName);
 		hotel.setAddress(address);
+		hotel.setRooms(rooms);
 		hotelRepository.save(hotel);
 		return hotel;
 	}

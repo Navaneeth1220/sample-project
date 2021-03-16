@@ -1,6 +1,7 @@
 package com.cg.apps.hotelbooking;
 
 import org.springframework.boot.SpringApplication;
+
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.cg.apps.hotelbooking.hotelms.ui.*;

@@ -1,10 +1,12 @@
 package com.cg.apps.hotelbooking.hotelms.entities;
 
-import java.util.Objects;
-
+import java.util.*;
+import com.cg.apps.hotelbooking.roomms.entities.*;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Hotel {
@@ -15,9 +17,8 @@ public class Hotel {
 	private String hotelName;
 	private String address;
 
-	/*@OneToMany 
-	 *private List<Room>rooms;
-	 */
+	@OneToMany(fetch = FetchType.EAGER)
+	private List<Room> rooms;
 
 	public Hotel() {
 
@@ -59,17 +60,15 @@ public class Hotel {
 		this.address = address;
 	}
 
-	/*
-	 * public List<Room> getRooms() { 
-	 * 
-	 * return rooms; 
-	 * }
-	 * 
-	 * public void setRooms(List<Room> rooms) { 
-	 * 
-	 * this.rooms = rooms; 
-	 * }
-	 */
+	public List<Room> getRooms() {
+
+		return rooms;
+	}
+
+	public void setRooms(List<Room> rooms) {
+
+		this.rooms = rooms;
+	}
 
 	@Override
 	public String toString() {
