@@ -140,8 +140,8 @@ public class HotelUI {
 
 	public void displayRoom(Room room) {
 
-		System.out.println("room id: " + room.getRoomId() + " room number: " + room.getRoomNumber() + " floor number: "
-				+ room.getFloorNumber() + " available: " + room.getAvailable() + " cost: " + room.getCost());
+		System.out.println("room id: " + room.getRoomId() + " room num: " + room.getRoomNum() + " floor num: "
+				+ room.getFloorNum() + " available: " + room.getAvailable() + " cost: " + room.getCost());
 
 	}
 

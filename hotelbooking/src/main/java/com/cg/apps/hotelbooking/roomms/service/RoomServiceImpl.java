@@ -34,8 +34,8 @@ public class RoomServiceImpl implements IRoomService {
 
 		Hotel hotel = option.get();
 		room.setHotel(hotel);
-		room.setFloorNumber(floorNum);
-		room.setRoomNumber(roomNum);
+		room.setFloorNum(floorNum);
+		room.setRoomNum(roomNum);
 		room.setAvailable(true);
 		room.setCost(cost);
 

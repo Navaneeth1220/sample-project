@@ -13,8 +13,8 @@ public class Room {
 	@GeneratedValue
 	@Id
 	private Long roomId;
-	private Integer floorNumber;
-	private Integer roomNumber;
+	private Integer floorNum;
+	private Integer roomNum;
 
 	@ManyToOne
 	private Hotel hotel;
@@ -36,24 +36,24 @@ public class Room {
 		this.roomId = roomId;
 	}
 
-	public Integer getFloorNumber() {
+	public Integer getFloorNum() {
 
-		return floorNumber;
+		return floorNum;
 	}
 
-	public void setFloorNumber(Integer floorNumber) {
+	public void setFloorNum(Integer floorNum) {
 
-		this.floorNumber = floorNumber;
+		this.floorNum = floorNum;
 	}
 
-	public Integer getRoomNumber() {
+	public Integer getRoomNum() {
 
-		return roomNumber;
+		return roomNum;
 	}
 
-	public void setRoomNumber(Integer roomNumber) {
+	public void setRoomNum(Integer roomNum) {
 
-		this.roomNumber = roomNumber;
+		this.roomNum = roomNum;
 	}
 
 	public Hotel getHotel() {
@@ -88,7 +88,7 @@ public class Room {
 
 	@Override
 	public String toString() {
-		return "Room [roomId=" + roomId + ", floorNumber=" + floorNumber + ", roomNumber=" + roomNumber + ", available="
+		return "Room [roomId=" + roomId + ", floorNum=" + floorNum + ", roomNum=" + roomNum + ", available="
 				+ available + ", cost=" + cost + "]";
 	}
 
