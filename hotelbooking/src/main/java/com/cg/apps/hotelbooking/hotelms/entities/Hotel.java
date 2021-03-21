@@ -17,17 +17,11 @@ public class Hotel {
 	private String hotelName;
 	private String address;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "hotel", fetch = FetchType.EAGER)
 	private List<Room> rooms;
 
 	public Hotel() {
 
-	}
-
-	public Hotel(String hotelName, String address) {
-
-		this.hotelName = hotelName;
-		this.address = address;
 	}
 
 	public Long getHotelId() {
@@ -72,24 +66,41 @@ public class Hotel {
 
 	@Override
 	public String toString() {
-
-		return "Hotel [hotelId=" + hotelId + ", hotelName=" + hotelName + ", address=" + address + "]";
+		return "Hotel [hotelId=" + hotelId + ", hotelName=" + hotelName + ", address=" + address + ", rooms=" + rooms
+				+ "]";
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		
+		if (this == obj) {
+			
 			return true;
-		if (obj == null)
+		}
+		
+		if (obj == null) {
+			
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		
+		if (getClass() != obj.getClass()) {
+			
 			return false;
+		}
+		
 		Hotel other = (Hotel) obj;
 		if (hotelId == null) {
-			if (other.hotelId != null)
+			
+			if (other.hotelId != null) {
+				
 				return false;
-		} else if (!hotelId.equals(other.hotelId))
+			}
+			
+		} else if (!hotelId.equals(other.hotelId)) {
+			
 			return false;
+		}
+		
 		return true;
 	}
 

@@ -23,7 +23,7 @@ public class RoomServiceImpl implements IRoomService {
 
 	@Transactional
 	@Override
-	public Room addRoom(Long hotelId, int floorNum, int roomNum) {
+	public Room addRoom(Long hotelId, int floorNum, int roomNum, double cost) {
 
 		Room room = new Room();
 		Optional<Hotel> option = hotelRepository.findById(hotelId);
@@ -37,7 +37,7 @@ public class RoomServiceImpl implements IRoomService {
 		room.setFloorNumber(floorNum);
 		room.setRoomNumber(roomNum);
 		room.setAvailable(true);
-		room.setCost(0.0);
+		room.setCost(cost);
 
 		Room roomAdded = roomRepository.save(room);
 		List<Room> rooms = hotel.getRooms();
@@ -55,7 +55,6 @@ public class RoomServiceImpl implements IRoomService {
 	@Override
 	public Room findById(Long roomId) {
 
-		validateRoomId(roomId);
 		Optional<Room> optional = roomRepository.findById(roomId);
 		if (!optional.isPresent()) {
 
@@ -68,19 +67,22 @@ public class RoomServiceImpl implements IRoomService {
 	public Room findRoom(Long hotelId, int floorNum, int roomNum) {
 
 		int count = 0;
-		Room find = null;
+		Room findRoom = null;
 		List<Room> rooms = roomRepository.findByFloorNumAndRoomNum(floorNum, roomNum);
 		for (Room room : rooms) {
+
 			if (hotelId == room.getHotel().getHotelId()) {
+
 				count++;
-				find = room;
+				findRoom = room;
 
 			}
 		}
-		if (count == 0) {
+		if (count==0) {
+
 			throw new RoomNotFoundException("Room Not Found");
 		}
-		return find;
+		return findRoom;
 	}
 
 	@Override
@@ -88,6 +90,7 @@ public class RoomServiceImpl implements IRoomService {
 
 		Optional<Hotel> option = hotelRepository.findById(hotelId);
 		if (!option.isPresent()) {
+
 			throw new HotelNotFoundException("Hotel Not Found");
 		}
 
@@ -100,17 +103,19 @@ public class RoomServiceImpl implements IRoomService {
 	@Override
 	public List<Room> availableRoomsInHotel(Long hotelId) {
 
-		List<Room> available = new ArrayList<>();
+		List<Room> availableRooms = new ArrayList<>();
 
 		List<Room> rooms = findAllRoomsInHotel(hotelId);
 
 		for (Room room : rooms) {
+
 			if (room.getAvailable()) {
-				available.add(room);
+
+				availableRooms.add(room);
 			}
 		}
 
-		return available;
+		return availableRooms;
 	}
 
 	public void validateRoomId(Long roomId) {

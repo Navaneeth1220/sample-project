@@ -5,7 +5,7 @@ import java.util.*;
 
 public interface IRoomService {
 
-	Room addRoom(Long hotelId, int floorNum, int roomNum);
+	Room addRoom(Long hotelId, int floorNum, int roomNum, double cost);
 
 	Room findById(Long roomId);
 

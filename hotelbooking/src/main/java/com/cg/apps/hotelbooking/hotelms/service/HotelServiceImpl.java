@@ -1,9 +1,12 @@
 package com.cg.apps.hotelbooking.hotelms.service;
 
 import java.util.*;
+import com.cg.apps.hotelbooking.roomms.entities.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.cg.apps.hotelbooking.guestms.entities.Guest;
 import com.cg.apps.hotelbooking.hotelms.dao.*;
 
 import com.cg.apps.hotelbooking.hotelms.entities.Hotel;
@@ -27,27 +30,52 @@ public class HotelServiceImpl implements IHotelService {
 	}
 
 	@Override
-	public Hotel addHotel(String hotelName, String address, List rooms) {
+	public Hotel addHotel(String hotelName, String address, List<Room>rooms) {
 
-		Hotel hotel = new Hotel();
-		hotel.setHotelName(hotelName);
-		hotel.setAddress(address);
-		hotel.setRooms(rooms);
-		hotelRepository.save(hotel);
-		return hotel;
+		Hotel addHotel = new Hotel();
+		addHotel.setHotelName(hotelName);
+		addHotel.setAddress(address);
+		addHotel.setRooms(rooms);
+		hotelRepository.save(addHotel);
+		return addHotel;
 	}
 
-	public void validateId(Long id) {
+	@Override
+	public Set<Guest> findAllGuestsLivingInHotel(Long hotelId) {
 
-		if (id < 0) {
+		Set<Guest> findAllGuests = hotelRepository.findAllGuestsLivingInHotel(hotelId);
+
+		return findAllGuests;
+
+	}
+
+	@Override
+	public List<Guest> findAllGuestsCheckedOutTodayInHotel(Long hotelId) {
+
+		List<Guest> guestsCheckedOut = new ArrayList<>();
+		List<Guest> guests = hotelRepository.findAllGuestsCheckedOutTodayInHotel(hotelId);
+		for (Guest guest : guests) {
+			if (guest.getCheckoutDateTime()!=null) {
+
+				guestsCheckedOut.add(guest);
+			}
+
+		}
+		return guestsCheckedOut;
+
+	}
+
+	public void validateHotelId(Long hotelId) {
+
+		if (hotelId < 0) {
 
 			throw new InvalidHotelIdException("id should not be negative");
 		}
 	}
 
-	void validateName(String name) {
+	public void validateHotelName(String hotelName) {
 
-		if (name == null || name.isEmpty() || name.trim().isEmpty()) {
+		if (hotelName == null || hotelName.isEmpty() || hotelName.trim().isEmpty()) {
 
 			throw new InvalidHotelNameException("name can't be null or empty");
 		}

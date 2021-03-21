@@ -26,14 +26,6 @@ public class Room {
 
 	}
 
-	public Room(Integer floorNumber, Integer roomNumber, Boolean available, double cost) {
-
-		this.floorNumber = floorNumber;
-		this.roomNumber = roomNumber;
-		this.available = available;
-		this.cost = cost;
-	}
-
 	public Long getRoomId() {
 
 		return roomId;
@@ -102,18 +94,35 @@ public class Room {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+
+		if (this == obj) {
+
 			return true;
-		if (obj == null)
+		}
+
+		if (obj == null) {
+
 			return false;
-		if (getClass() != obj.getClass())
+		}
+
+		if (getClass() != obj.getClass()) {
+
 			return false;
+		}
+
 		Room other = (Room) obj;
 		if (roomId == null) {
-			if (other.roomId != null)
+
+			if (other.roomId != null) {
+
 				return false;
-		} else if (!roomId.equals(other.roomId))
+			}
+
+		} else if (!roomId.equals(other.roomId)) {
+
 			return false;
+		}
+
 		return true;
 	}
 
